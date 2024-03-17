@@ -1,7 +1,14 @@
 import requests
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
 
-USERNAME = "paulinaklop"
-TOKEN = "sdakjhfkjn98432ncnj"
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+
+USERNAME = os.getenv("username_pixela")
+TOKEN = os.getenv("token_pixela")
 
 ###############CREATE USER
 user_parameters = {
