@@ -22,10 +22,10 @@ app.config.from_object(Configuration)
 from NBP_API_project import operations
 
 # SQLAlchemy (create Python object from tables records)
-db = SQLAlchemy(app)
-app.app_context().push()
+# db = SQLAlchemy(app)
+# app.app_context().push()
 
-Migrate(app,db)
+# Migrate(app,db)
 
 
 
