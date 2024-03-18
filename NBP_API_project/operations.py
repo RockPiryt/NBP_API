@@ -3,43 +3,74 @@ import requests
 from NBP_API_project import app
 
 
-AV_TABLE = "a"
-NBP_ENDPOINT = f"http://api.nbp.pl/api"
-
 
 @app.route('/api/v1/av_exchange_rate/<user_date>/<curr_code>', methods=['GET'])
 def av_exchange_rate(user_date, curr_code):
     """Given a date (formatted YYYY-MM-DD) and a currency code (list: https://nbp.pl/en/statistic-and-financial-reporting/rates/table-a/), provide its average exchange rate"""
 
-    AV_EXCHANGE_RATE_ENDPOINT = f"{NBP_ENDPOINT}/exchangerates/rates/{AV_TABLE}/{curr_code}/{user_date}/"
+    # URL params
+    AV_TABLE = "a"
+    NBP_ENDPOINT = f"http://api.nbp.pl/api"
+    USER_DATE = f"{user_date}"
+    CURR_CODE =f"{curr_code}"
+
+    # GET request
+    AV_EXCHANGE_RATE_ENDPOINT = f"{NBP_ENDPOINT}/exchangerates/rates/{AV_TABLE}/{CURR_CODE}/{USER_DATE}/"
     response = requests.get(url=AV_EXCHANGE_RATE_ENDPOINT)
 
-    code = response.status_code
-    print(code)
+    # Check codes
+    # code = response.status_code
     response.raise_for_status()
 
+    # Get data
     data = response.json()
     av_currency_rate = data['rates'][0]['mid']
-    print(av_currency_rate)
-
+    
     return jsonify({
         'success': True,
         'data': f'Average exchange rate for {curr_code} on {user_date} is {av_currency_rate}'
     }), 200
 
-@app.route('/api/v1/operation2/<curr_code>/<int:last_quo>', methods=['GET'])
-def operation2(curr_code, last_quo):
+@app.route('/api/v1/last_quotations/<curr_code>/<int:last_quo>', methods=['GET'])
+def last_quotations(curr_code, last_quo):
     """Given a currency code and the number of last quotations N (N <= 255), provide the max and min average value (every day has a different average)."""
 
+    # URL params
+    RATE_TABLE = "a"
+    CURR_CODE = f"{curr_code}"
+    N_quotations = f"{last_quo}"
+
+    # __________________GET request
+    LAST_QUO_ENDPOINT = f"http://api.nbp.pl/api/exchangerates/rates/{RATE_TABLE}/{CURR_CODE}/last/{N_quotations}/?format=json"
+    response2 = requests.get(url=LAST_QUO_ENDPOINT)
+
+    # __________________Check codes
+    # code = response.status_code
+    response2.raise_for_status()
+
+
+    # __________________Get data
+    data = response2.json()
+
+    # Create empty list to store mid rates
+    mid_rate_list = []
+
+    # Add rates to list
+    end = int(N_quotations) - 1
+
+    for i in range(0,end):
+        single_mid_rate = data['rates'][i]['mid']
+        mid_rate_list.append(single_mid_rate)
+        # print(single_mid_rate)
     
     return jsonify({
         'success': True,
-        'data': f'Get second info with {curr_code} and {last_quo}'
+        'data': f'The max and min average value for {curr_code} and {last_quo}'
     }), 200
 
 @app.route('/api/v1/operation3/<curr_code>/<int:last_quo>', methods=['GET'])
 def operation3(curr_code, last_quo):
-    """Given a currency code and the number of last quotations N (N <= 255), provide the max and min average value (every day has a different average)."""
+    """Given a currency code and the number of last quotations N (N <= 255), provide the major difference between the buy and ask rate (every day has different rates)."""
 
     return jsonify({
         'success': True,

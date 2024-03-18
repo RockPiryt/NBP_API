@@ -16,28 +16,58 @@ from datetime import datetime
 
 # cena = data[0]["cena"]
 # print(cena)
-###############################################################
-#tabela A
 
-table = "a"
-code = "EUR"
-date = "2024-01-12"
+# ___________________________Average exchange rate
 
-endpoint = f"http://api.nbp.pl/api/exchangerates/rates/{table}/{code}/{date}/"
-response = requests.get(url=endpoint)
+# # URL params
+# table = "a"
+# code = "EUR"
+# date = "2024-01-12"
+
+# # GET request
+# endpoint = f"http://api.nbp.pl/api/exchangerates/rates/{table}/{code}/{date}/"
+# response1 = requests.get(url=endpoint)
+
+# # code = response.status_code
+# # print(code)
+# response1.raise_for_status()
+
+# data = response1.json()
+# av_currency_rate = data['rates'][0]['mid']
+# # print(av_currency_rate)
 
 
-code = response.status_code
-response.raise_for_status()
+# ___________________________N last quotations
 
-data = response.json()
-print(data)
-av_currency_rate = data['rates'][0]['mid']
-print(av_currency_rate)
-# currency_euro = response.json()[0]["rates"][7]["currency"]
-# mid_euro = response.json()[0]["rates"][7]["mid"]
-# print(currency_euro)
-# print(mid_euro)
+# URL params
+RATE_TABLE = "a"
+CURR_CODE = "GBP"
+N_quotations = "15"
+
+# GET request
+# endpoint_last="http://api.nbp.pl/api/exchangerates/rates/a/gbp/last/10/?format=json"
+LAST_QUO_ENDPOINT = f"http://api.nbp.pl/api/exchangerates/rates/{RATE_TABLE}/{CURR_CODE}/last/{N_quotations}/?format=json"
+response2 = requests.get(url=LAST_QUO_ENDPOINT)
+
+# code = response.status_code
+# print(code)
+response2.raise_for_status()
+
+data = response2.json()
+# print(data)
+
+end = int(N_quotations) - 1
+
+mid_rate_list = []
+for i in range(0,end):
+    single_mid_rate = data['rates'][i]['mid']
+    mid_rate_list.append(single_mid_rate)
+    print(single_mid_rate)
+
+
+
+
+
 
 # #____________________Given a date (formatted YYYY-MM-DD)
 # user_year = 2021
