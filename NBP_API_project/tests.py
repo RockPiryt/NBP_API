@@ -62,10 +62,13 @@ mid_rate_list = []
 for i in range(0,end):
     single_mid_rate = data['rates'][i]['mid']
     mid_rate_list.append(single_mid_rate)
-    print(single_mid_rate)
+    # print(single_mid_rate)
 
 
-
+max_value = max(mid_rate_list)
+print(max_value)
+min_value = min(mid_rate_list)
+print(min_value)
 
 
 

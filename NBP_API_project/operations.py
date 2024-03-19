@@ -61,11 +61,13 @@ def last_quotations(curr_code, last_quo):
     for i in range(0,end):
         single_mid_rate = data['rates'][i]['mid']
         mid_rate_list.append(single_mid_rate)
-        # print(single_mid_rate)
+    
+    max_value = max(mid_rate_list)
+    min_value = min(mid_rate_list)
     
     return jsonify({
         'success': True,
-        'data': f'The max and min average value for {curr_code} and {last_quo}'
+        'data': f'The max is {max_value} and min is {min_value} average value for {curr_code} and {last_quo}'
     }), 200
 
 @app.route('/api/v1/operation3/<curr_code>/<int:last_quo>', methods=['GET'])
