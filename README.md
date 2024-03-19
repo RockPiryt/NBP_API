@@ -16,15 +16,18 @@ REST_API to query data from the Narodowy Bank Polski's public APIs and return re
 
 ## General Information
 
-I created this project to complete intern task.
+REST API to query data from the NBP public API. The documentation can be found https://documenter.getpostman.com/view/24234549/2sA2xpTpBw
 
 ## Technologies Used
 
-- Python - version 3.11
-- Flask - version 2.2.2
-- SQLAlchemy - version 1.4.45
-- WTForms - version  3.0.1
-- PostgreSQL database
+* Python 3.11
+* Flask 2.2.2
+* Alembic 1.8.1
+* SQLAlchemy 1.4.43
+* Pytest 7.2.0
+* PostgreSQL
+* AWS
+* Postman
 
 ## Features
 
@@ -36,25 +39,87 @@ List the ready features here:
 
 ## Previews
 
-### Home Page
+### Average exchange rate
 
-![Home Page Preview](myproject/static/img/previews/prev_home_page.jpg)
+![Average exchange rate Preview](Documentation/screenshots/first_request.jpg)
 
-### Section 1 - aaaa
+### The max and min average value
 
-![Section 1 Preview - Stock trading information using API](myproject/static/img/previews/prev_section_1_stock_trading.jpg)
+![The max and min average value Preview ](Documentation/screenshots/second_request.jpg)
+
+### The major difference between the buy and ask rate
+
+![The major difference between the buy and ask rate Preview ](Documentation/screenshots/third_request.jpg)
+
 
 ## Setup
 
-- Clone This Project git clone
+- Clone repository NBP_API
+
+```buildoutcfg
+
+git clone NBP_API
+
+```
+
 - Enter Project Directory cd NBP_API
-- Create a Virtual Environment (for Windows) python -m venv (name your virtual enviroment :) venv
 
-'EXAMPLE: python -m venv venv'
+```buildoutcfg
 
-- Activate Virtual Environment source: venv/Scripts/activate
-- Install Requirements Package pip install -r requirements.txt
-- Finally Run The Project: python app.py
+cd NBP_API
+
+```
+
+- Create  database and user
+- Rename .env.example to .env and set your calues
+
+```buildoutcfg
+
+# SQLALCHEMY_DATABASE_URI template
+
+SQLALCHEMY_DATABASE_URI = mysql+pymysql://{db_user}:{db_password}@{db_host}/{database}?charset=utf8mb4
+
+```
+
+- Create a virtual evironment
+
+```buildoutcfg
+
+python -m venv venv
+
+```
+
+- Activate Virtual Environment
+
+```buildoutcfg
+
+source: venv/Scripts/activate
+
+```
+
+- Install packages from requirements.txt
+
+```buildoutcfg
+
+pip install -r requirements.txt
+
+```
+
+- Migrate database
+
+```buildoutcfg
+
+flask db upgrade
+
+```
+
+- Run command
+
+```buildoutcfg
+
+python nbp.py
+
+```
 
 ## Project Status
 
