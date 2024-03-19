@@ -41,15 +41,15 @@ List the ready features here:
 
 ### Average exchange rate
 
-![Average exchange rate Preview](Documentation/screenshots/first_request.jpg)
+![Average exchange rate Preview](Documentation\screenshots\first_request.jpeg)
 
 ### The max and min average value
 
-![The max and min average value Preview ](Documentation/screenshots/second_request.jpg)
+![The max and min average value Preview ](Documentation\screenshots\second_request.jpeg)
 
 ### The major difference between the buy and ask rate
 
-![The major difference between the buy and ask rate Preview ](Documentation/screenshots/third_request.jpg)
+![The major difference between the buy and ask rate Preview ](Documentation\screenshots\third_request.jpeg)
 
 
 ## Setup
