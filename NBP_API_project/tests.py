@@ -95,7 +95,7 @@ end = int(N_quotations) - 1
 # sell = ask
 
 bids_list = []
-for i in range(0,end):
+for i in range(0, end):
     single_bid_rate = data['rates'][i]['bid']
     bids_list.append(single_bid_rate)
     # print(single_bid_rate)
@@ -103,17 +103,23 @@ for i in range(0,end):
 print(bids_list)
 
 asks_list = []
-for i in range(0,end):
+for i in range(0, end):
     single_ask_rate = data['rates'][i]['ask']
     asks_list.append(single_ask_rate)
     # print(single_ask_rate)
 
 print(asks_list)
 
+diff_list = []
+# Make subtraction
+for i in range(0, end):
+    difference = asks_list[i]-bids_list[i]
+    diff_list.append(difference)
 
+print(diff_list)
 
-
-
+max_diff = max(diff_list)
+print(max_diff)
 
 
 # #____________________Given a date (formatted YYYY-MM-DD)
