@@ -45,7 +45,7 @@ def last_quotations(curr_code, last_quo):
     response2 = requests.get(url=LAST_QUO_ENDPOINT)
 
     # __________________Check codes
-    # code = response.status_code
+    # code = response2.status_code
     response2.raise_for_status()
 
 
@@ -70,9 +70,43 @@ def last_quotations(curr_code, last_quo):
         'data': f'The max is {max_value} and min is {min_value} average value for {curr_code} and {last_quo}'
     }), 200
 
-@app.route('/api/v1/operation3/<curr_code>/<int:last_quo>', methods=['GET'])
-def operation3(curr_code, last_quo):
+@app.route('/api/v1/major_diff/<curr_code>/<int:last_quo>', methods=['GET'])
+def major_diff(curr_code, last_quo):
     """Given a currency code and the number of last quotations N (N <= 255), provide the major difference between the buy and ask rate (every day has different rates)."""
+
+    # URL params
+    BUY_SELL_TABLE = "c"
+    CURR_CODE = f"{curr_code}"
+    N_quotations = f"{last_quo}"
+
+    # GET request
+    # endpoint_major="http://api.nbp.pl/api/exchangerates/rates/c/usd/last/10/?format=json"
+    MAJOR_ENDPOINT = f"http://api.nbp.pl/api/exchangerates/rates/{BUY_SELL_TABLE}/{CURR_CODE}/last/{N_quotations}/?format=json"
+    response3 = requests.get(url=MAJOR_ENDPOINT)
+
+    # code = response3.status_code
+    response3.raise_for_status()
+
+    data = response3.json()
+    # print(data)
+
+    end = int(N_quotations) - 1
+
+    # buy = bids
+    # sell = ask
+
+    # Create buy rates list
+    bids_list = []
+    for i in range(0,end):
+        single_bid_rate = data['rates'][i]['bid']
+        bids_list.append(single_bid_rate)
+
+    # Create ask rates list
+    asks_list = []
+    for i in range(0,end):
+        single_ask_rate = data['rates'][i]['ask']
+        asks_list.append(single_ask_rate)
+
 
     return jsonify({
         'success': True,
