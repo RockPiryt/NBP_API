@@ -41,15 +41,15 @@ List the ready features here:
 
 ### Average exchange rate
 
-![Average exchange rate Preview](Documentation\screenshots\first_request.jpeg)
+![Average exchange rate Preview](Documentation/screenshots/first_request.jpeg)
 
 ### The max and min average value
 
-![The max and min average value Preview ](Documentation\screenshots\second_request.jpeg)
+![The max and min average value Preview ](Documentation/screenshots/second_request.jpeg)
 
 ### The major difference between the buy and ask rate
 
-![The major difference between the buy and ask rate Preview ](Documentation\screenshots\third_request.jpeg)
+![The major difference between the buy and ask rate Preview ](Documentation/screenshots/third_request.jpeg)
 
 
 ## Setup
@@ -58,7 +58,7 @@ List the ready features here:
 
 ```buildoutcfg
 
-git clone NBP_API
+git clone https://github.com/RockPiryt/NBP_API.git
 
 ```
 
@@ -136,7 +136,7 @@ Room for improvement:
 ## Contact
 
 - Created by [@RockPiryt Github](https://github.com/RockPiryt)
-- My Resume [@RockPiryt Resume](https://rockpiryt.github.io/Personal_Site/)
+- My Resume [@RockPiryt Resume](https://paulinakimak.com)
 
 Feel free to contact me!
 
