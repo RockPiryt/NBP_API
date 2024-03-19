@@ -58,7 +58,7 @@ List the ready features here:
 
 ```buildoutcfg
 
-git clone NBP_API
+git clone https://github.com/RockPiryt/NBP_API.git
 
 ```
 
