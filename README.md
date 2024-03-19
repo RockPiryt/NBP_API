@@ -136,7 +136,7 @@ Room for improvement:
 ## Contact
 
 - Created by [@RockPiryt Github](https://github.com/RockPiryt)
-- My Resume [@RockPiryt Resume](https://rockpiryt.github.io/Personal_Site/)
+- My Resume [@RockPiryt Resume](https://paulinakimak.com)
 
 Feel free to contact me!
 
