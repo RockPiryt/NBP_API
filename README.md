@@ -21,12 +21,12 @@ REST API to query data from the NBP public API. The documentation can be found h
 ## Technologies Used
 
 * Python 3.11
-* Flask 2.2.2
-* Alembic 1.8.1
-* SQLAlchemy 1.4.43
-* Pytest 7.2.0
-* PostgreSQL
-* AWS
+* Flask 3.0.2
+* Alembic 1.13.1
+* SQLAlchemy 2.0.28
+* Pytest 8.1.1
+* PostgreSQL (in progress)
+* AWS (in progress)
 * Postman
 
 ## Features
@@ -51,7 +51,6 @@ List the ready features here:
 
 ![The major difference between the buy and ask rate Preview ](Documentation/screenshots/third_request.jpeg)
 
-
 ## Setup
 
 - Clone repository NBP_API
@@ -70,14 +69,14 @@ cd NBP_API
 
 ```
 
-- Create  database and user
+- Create  database and user (Improvement in progress)
 - Rename .env.example to .env and set your calues
 
 ```buildoutcfg
 
 # SQLALCHEMY_DATABASE_URI template
 
-SQLALCHEMY_DATABASE_URI = mysql+pymysql://{db_user}:{db_password}@{db_host}/{database}?charset=utf8mb4
+SQLALCHEMY_DATABASE_URI = ' '
 
 ```
 
@@ -105,7 +104,7 @@ pip install -r requirements.txt
 
 ```
 
-- Migrate database
+- Migrate database (Improvement in progress)
 
 ```buildoutcfg
 
@@ -132,6 +131,7 @@ Room for improvement:
 * Unit/integration tests.
 * Docker image of the whole application.
 * Swagger UI or any other simple front-end (with e.g. React, Angular).
+* Add a Postgres Database
 
 ## Contact
 
