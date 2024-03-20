@@ -3,7 +3,6 @@ from os.path import join, dirname
 from dotenv import load_dotenv
 from pathlib import Path
 
-base_dir = Path(__file__).resolve().parent
 
 # Load .env file
 dotenv_path = join(dirname(__file__), '.env')
@@ -17,13 +16,17 @@ class Configuration:
 
 
 class DevelopmentConfig(Configuration):
-    # SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_POSTGRES_DB_URI")
-    pass
+    username_postdb = os.getenv("postgreSQL_username")
+    password_postdb = os.getenv("postgreSQL_password")
+    database_postdb = os.getenv("postgreSQL_database")
+    host_postdb = os.getenv("postgreSQL_host")
+    SQLALCHEMY_DATABASE_URI= f"postgresql://{username_postdb}:{password_postdb}@{host_postdb}/{database_postdb}"
+    DEBUG = True
 
 
 class TestingConfig(Configuration):
+    base_dir = Path(__file__).resolve().parent
     DB_FILE_PATH = base_dir / 'tests' / 'tests.db'
-    #SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_SQLITE_DB_URI")
     SQLALCHEMY_DATABASE_URI = f'sqlite:///{DB_FILE_PATH}'
     DEBUG = True
     TESTING = True
@@ -33,6 +36,3 @@ config_dict = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
 }
-
-# To check correct loading
-# print(Config.SECRET_KEY)

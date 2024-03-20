@@ -76,7 +76,7 @@ cd NBP_API
 
 # SQLALCHEMY_DATABASE_URI template
 
-SQLALCHEMY_DATABASE_URI = ' '
+SQLALCHEMY_DATABASE_URI = f"postgresql://{username_postdb}:{password_postdb}@{host_postdb}/{database_postdb}"
 
 ```
 
