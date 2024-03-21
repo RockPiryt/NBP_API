@@ -1,0 +1,2 @@
+FLASK_APP=nbp.py
+FLASK_DEBUG=1

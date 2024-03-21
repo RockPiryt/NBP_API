@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-# from flask_migrate import Migrate
+from flask_migrate import Migrate
 
 from configuration import config_dict
 
@@ -13,6 +13,6 @@ from NBP_API_project import operations
 
 db = SQLAlchemy(app)
 app.app_context().push()
-# Migrate(app,db)
+Migrate(app,db)
 
 from NBP_API_project import models
