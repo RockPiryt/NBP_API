@@ -25,7 +25,7 @@ REST API to query data from the NBP public API. The documentation can be found h
 * Alembic 1.13.1
 * SQLAlchemy 2.0.28
 * Pytest 8.1.1
-* PostgreSQL (in progress)
+* PostgreSQL
 * AWS (in progress)
 * Postman
 
@@ -69,7 +69,7 @@ cd NBP_API
 
 ```
 
-- Create  database and user (Improvement in progress)
+- Create  database
 - Rename .env.example to .env and set your calues
 
 ```buildoutcfg
@@ -104,7 +104,7 @@ pip install -r requirements.txt
 
 ```
 
-- Migrate database (Improvement in progress)
+- Migrate database
 
 ```buildoutcfg
 
@@ -116,7 +116,7 @@ flask db upgrade
 
 ```buildoutcfg
 
-python nbp.py
+flask run
 
 ```
 

@@ -178,5 +178,6 @@ def create_single_av_exchange_rate(user_date, curr_code):
 
     return jsonify({
         'success': True,
-        'data': f'New record in DB has been created. You chose a currency code:{curr_code} and a date (formatted YYYY-MM-DD): {user_date}. Average exchange rate is {av_currency_rate}.'
+        'info': f'New record in DB has been created.',
+        'data': rates_schema.dump(single_av_exchange_rate)
     }), 200
