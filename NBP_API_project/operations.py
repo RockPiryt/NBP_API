@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, request
 import requests
 from NBP_API_project import app, db
 from NBP_API_project.models import AverageRate, AverageRateSchema, rates_schema
@@ -149,18 +149,23 @@ def get_single_av_exchange_rate(rate_id):
         'data': rates_schema.dump(av_ex_rate)
     }), 200
 
-@app.route('/api/v1/av_exchange_rate/<user_date>/<curr_code>', methods=['POST'])
-def create_single_av_exchange_rate(user_date, curr_code):
+
+# POST with headers and body
+@app.route('/api/v1/create_av_exchange_rate', methods=['POST'])
+def create_body_av_exchange_rate():
     """ Create single record in DB (data: an average exchange rate, a date (formatted YYYY-MM-DD) and a currency code."""
 
     # Parameters
     RATE_TABLE = "a"
     NBP_ENDPOINT = f"http://api.nbp.pl/api"
-    USER_DATE = f"{user_date}"
-    CURR_CODE = f"{curr_code}"
+
+    # Get data from request body
+    data_body_request =  request.get_json()
+    user_date = data_body_request["rate_date"]
+    curr_code = data_body_request["currency"]
 
     # GET request
-    AV_EXCHANGE_RATE_ENDPOINT = f"{NBP_ENDPOINT}/exchangerates/rates/{RATE_TABLE}/{CURR_CODE}/{USER_DATE}/"
+    AV_EXCHANGE_RATE_ENDPOINT = f"{NBP_ENDPOINT}/exchangerates/rates/{RATE_TABLE}/{curr_code}/{user_date}/"
     response = requests.get(url=AV_EXCHANGE_RATE_ENDPOINT)
 
     # Check codes
@@ -172,7 +177,7 @@ def create_single_av_exchange_rate(user_date, curr_code):
     av_currency_rate = data['rates'][0]['mid']
 
     # Create single record in DB
-    single_av_exchange_rate = AverageRate(rate_date=USER_DATE, currency=CURR_CODE, average=av_currency_rate)
+    single_av_exchange_rate = AverageRate(rate_date=user_date, currency=curr_code, average=av_currency_rate)
     db.session.add(single_av_exchange_rate)
     db.session.commit()
 
