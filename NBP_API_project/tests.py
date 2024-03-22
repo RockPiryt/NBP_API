@@ -17,12 +17,18 @@ from datetime import datetime
 # cena = data[0]["cena"]
 # print(cena)
 
-# ___________________________Average exchange rate
+#___________________________Average exchange rate
 
-# # URL params
-# table = "a"
-# code = "EUR"
-# date = "2024-01-12"
+# URL params
+table = "a"
+code = "EUR"
+date = "2024-01-12"
+
+# Convert string to date object
+date_object = datetime.strptime(date, "%Y-%m-%d").date()
+print(date_object)
+print(type(date_object))
+
 
 # # GET request
 # endpoint = f"http://api.nbp.pl/api/exchangerates/rates/{table}/{code}/{date}/"
@@ -70,56 +76,56 @@ from datetime import datetime
 # min_value = min(mid_rate_list)
 # print(min_value)
 
-# ___________________________Major difference between the buy and ask rate
+# # ___________________________Major difference between the buy and ask rate
 
-# URL params
-BUY_SELL_TABLE = "c"
-CURR_CODE = "USD"
-N_quotations = "10"
+# # URL params
+# BUY_SELL_TABLE = "c"
+# CURR_CODE = "USD"
+# N_quotations = "10"
 
-# GET request
-# endpoint_major="http://api.nbp.pl/api/exchangerates/rates/c/usd/last/10/?format=json"
-MAJOR_ENDPOINT = f"http://api.nbp.pl/api/exchangerates/rates/{BUY_SELL_TABLE}/{CURR_CODE}/last/{N_quotations}/?format=json"
-response3 = requests.get(url=MAJOR_ENDPOINT)
+# # GET request
+# # endpoint_major="http://api.nbp.pl/api/exchangerates/rates/c/usd/last/10/?format=json"
+# MAJOR_ENDPOINT = f"http://api.nbp.pl/api/exchangerates/rates/{BUY_SELL_TABLE}/{CURR_CODE}/last/{N_quotations}/?format=json"
+# response3 = requests.get(url=MAJOR_ENDPOINT)
 
-# code = response3.status_code
-# print(code)
-response3.raise_for_status()
+# # code = response3.status_code
+# # print(code)
+# response3.raise_for_status()
 
-data = response3.json()
-# print(data)
+# data = response3.json()
+# # print(data)
 
-end = int(N_quotations) - 1
+# end = int(N_quotations) - 1
 
-# buy = bids
-# sell = ask
+# # buy = bids
+# # sell = ask
 
-bids_list = []
-for i in range(0, end):
-    single_bid_rate = data['rates'][i]['bid']
-    bids_list.append(single_bid_rate)
-    # print(single_bid_rate)
+# bids_list = []
+# for i in range(0, end):
+#     single_bid_rate = data['rates'][i]['bid']
+#     bids_list.append(single_bid_rate)
+#     # print(single_bid_rate)
 
-print(bids_list)
+# print(bids_list)
 
-asks_list = []
-for i in range(0, end):
-    single_ask_rate = data['rates'][i]['ask']
-    asks_list.append(single_ask_rate)
-    # print(single_ask_rate)
+# asks_list = []
+# for i in range(0, end):
+#     single_ask_rate = data['rates'][i]['ask']
+#     asks_list.append(single_ask_rate)
+#     # print(single_ask_rate)
 
-print(asks_list)
+# print(asks_list)
 
-diff_list = []
-# Make subtraction
-for i in range(0, end):
-    difference = asks_list[i]-bids_list[i]
-    diff_list.append(difference)
+# diff_list = []
+# # Make subtraction
+# for i in range(0, end):
+#     difference = asks_list[i]-bids_list[i]
+#     diff_list.append(difference)
 
-print(diff_list)
+# print(diff_list)
 
-max_diff = max(diff_list)
-print(max_diff)
+# max_diff = max(diff_list)
+# print(max_diff)
 
 
 # #____________________Given a date (formatted YYYY-MM-DD)

@@ -9,3 +9,4 @@
 configuration_db_test.py
 /migrations/__pycache__
 /migrations/versions/__pycache__
+/NBP_API_project/samples
