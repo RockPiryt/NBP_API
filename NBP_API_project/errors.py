@@ -1,5 +1,6 @@
-from NBP_API_project import app
+from NBP_API_project import app, db
 from flask import Response, jsonify
+
 
 class ErrorResponse:
     def __init__(self, message: str, http_status: int):
@@ -10,16 +11,24 @@ class ErrorResponse:
 
         self.http_status = http_status
 
-    def make_response(self)-> Response:
+    def make_response(self) -> Response:
         response = jsonify(self.payload)
         response.status_code = self.http_status
         return response
+
 
 @app.errorhandler(404)
 def not_found_error(err):
     return ErrorResponse(err.description, 404).make_response()
 
+
 @app.errorhandler(400)
-def not_found_error(err):
-    messages = err.data.get('messages', {}).get('json',{})
+def bad_request_error(err):
+    messages = err.data.get('messages', {}).get('json', {})
     return ErrorResponse(messages, 400).make_response()
+
+
+@app.errorhandler(500)
+def internal_server_error(err):
+    db.session.rollback()
+    return ErrorResponse(err.description, 500).make_response()
