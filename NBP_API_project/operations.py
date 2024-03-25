@@ -153,7 +153,7 @@ def get_single_av_exchange_rate(rate_id):
 
 # POST with headers and body
 @app.route('/api/v1/create_av_exchange_rate', methods=['POST'])
-@use_args(rates_schema)
+@use_args(rates_schema, error_status_code=400)
 def create_body_av_exchange_rate(args_dict: dict):
     """ Create single record in DB (data: an average exchange rate, a date (formatted YYYY-MM-DD) and a currency code."""
 

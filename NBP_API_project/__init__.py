@@ -16,3 +16,4 @@ Migrate(app,db)
 
 from NBP_API_project import models
 from NBP_API_project import operations
+from NBP_API_project import errors
