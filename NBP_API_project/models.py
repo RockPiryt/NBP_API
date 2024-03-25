@@ -19,7 +19,6 @@ class AverageRateSchema(Schema):
     id = fields.Integer(dump_only=True)
     rate_date = fields.Date("%Y-%m-%d", required=True)
     currency = fields.String(required=True)
-    average = fields.Float(required=True)
 
     # Check if date is lower or equal current date
     @validates('rate_date')

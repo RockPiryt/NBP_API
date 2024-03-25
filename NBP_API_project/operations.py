@@ -1,5 +1,6 @@
 from flask import jsonify, request
 import requests
+from webargs.flaskparser import use_args
 from NBP_API_project import app, db
 from NBP_API_project.models import AverageRate, AverageRateSchema, rates_schema
 
@@ -152,7 +153,8 @@ def get_single_av_exchange_rate(rate_id):
 
 # POST with headers and body
 @app.route('/api/v1/create_av_exchange_rate', methods=['POST'])
-def create_body_av_exchange_rate():
+@use_args(rates_schema)
+def create_body_av_exchange_rate(args_dict: dict):
     """ Create single record in DB (data: an average exchange rate, a date (formatted YYYY-MM-DD) and a currency code."""
 
     # Parameters
@@ -160,9 +162,8 @@ def create_body_av_exchange_rate():
     NBP_ENDPOINT = f"http://api.nbp.pl/api"
 
     # Get data from request body
-    data_body_request =  request.get_json()
-    user_date = data_body_request["rate_date"]
-    curr_code = data_body_request["currency"]
+    user_date = args_dict["rate_date"]
+    curr_code = args_dict["currency"]
 
     # GET request
     AV_EXCHANGE_RATE_ENDPOINT = f"{NBP_ENDPOINT}/exchangerates/rates/{RATE_TABLE}/{curr_code}/{user_date}/"
