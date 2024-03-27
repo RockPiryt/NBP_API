@@ -9,6 +9,7 @@ def test_a1():
 
 def test_a2():
     assert True  # passed
+    print("Ala ma kota")
     assert 1  # passed
     assert 0  # failed
     assert False  # failed
