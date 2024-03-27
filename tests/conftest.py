@@ -1,6 +1,5 @@
 import pytest
 
-# from NBP_API_project import app, db
 from NBP_API_project import create_app, db
 
 @pytest.fixture

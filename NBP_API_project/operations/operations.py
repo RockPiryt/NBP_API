@@ -1,11 +1,12 @@
 from flask import jsonify, request
 import requests
 from webargs.flaskparser import use_args
-from NBP_API_project import app, db
+from NBP_API_project import db
+from NBP_API_project.operations import operations_bp
 from NBP_API_project.models import AverageRate, AverageRateSchema, rates_schema
 
 
-@app.route('/api/v1/av_exchange_rate/<user_date>/<curr_code>', methods=['GET'])
+@operations_bp.route('/api/v1/av_exchange_rate/<user_date>/<curr_code>', methods=['GET'])
 def av_exchange_rate(user_date, curr_code):
     """Given a date (formatted YYYY-MM-DD) and a currency code (list: https://nbp.pl/en/statistic-and-financial-reporting/rates/table-a/), provide its average exchange rate"""
 
@@ -33,7 +34,7 @@ def av_exchange_rate(user_date, curr_code):
     }), 200
 
 
-@app.route('/api/v1/min_max_av/<curr_code>/<int:last_quo>', methods=['GET'])
+@operations_bp.route('/api/v1/min_max_av/<curr_code>/<int:last_quo>', methods=['GET'])
 def min_max_av(curr_code, last_quo):
     """Given a currency code and the number of last quotations N (N <= 255), provide the max and min average value (every day has a different average)."""
 
@@ -73,7 +74,7 @@ def min_max_av(curr_code, last_quo):
     }), 200
 
 
-@app.route('/api/v1/major_diff/<curr_code>/<int:last_quo>', methods=['GET'])
+@operations_bp.route('/api/v1/major_diff/<curr_code>/<int:last_quo>', methods=['GET'])
 def major_diff(curr_code, last_quo):
     """Given a currency code and the number of last quotations N (N <= 255), provide the major difference between the buy and ask rate (every day has different rates)."""
 
@@ -125,7 +126,7 @@ def major_diff(curr_code, last_quo):
 
 #_____________________Endpoints (Database)
 
-@app.route('/api/v1/av_exchange_rates', methods=['GET'])
+@operations_bp.route('/api/v1/av_exchange_rates', methods=['GET'])
 def get_all_av_exchange_rates():
     """Provide all average exchange rates from DB"""
 
@@ -138,7 +139,7 @@ def get_all_av_exchange_rates():
         'number_of_records': len(av_ex_rates_obj_list)
     }), 200
 
-@app.route('/api/v1/av_exchange_rates/<int:rate_id>', methods=['GET'])
+@operations_bp.route('/api/v1/av_exchange_rates/<int:rate_id>', methods=['GET'])
 def get_single_av_exchange_rate(rate_id):
     """Provide a single average exchange rate from DB."""
 
@@ -152,7 +153,7 @@ def get_single_av_exchange_rate(rate_id):
 
 
 # POST with headers and body
-@app.route('/api/v1/create_av_exchange_rate', methods=['POST'])
+@operations_bp.route('/api/v1/create_av_exchange_rate', methods=['POST'])
 @use_args(rates_schema, error_status_code=400)
 def create_body_av_exchange_rate(args_dict: dict):
     """ Create single record in DB (data: an average exchange rate, a date (formatted YYYY-MM-DD) and a currency code."""
