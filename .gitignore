@@ -17,3 +17,4 @@ configuration_db_test.py
 /NBP_API_project/small
 nbp_small.py
 tests.db
+/tests/sample

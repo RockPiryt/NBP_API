@@ -12,5 +12,10 @@ def app_setup():
 
     yield app
 
-    # Remove test database path
-    app.config["DB_FILE_PATH"].unlink(missing_ok=True)
+    # # # Remove test database path
+    # app.config["DB_FILE_PATH"].unlink(missing_ok=True)
+
+@pytest.fixture
+def client_setup(app_setup):
+    with app_setup.test_client() as client:
+        yield client
