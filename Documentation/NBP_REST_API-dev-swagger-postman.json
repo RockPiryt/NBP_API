@@ -1,0 +1,93 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "2024-04-20T08:03:10Z",
+    "title" : "NBP_REST_API"
+  },
+  "host" : "r2qw1eeeve.execute-api.eu-west-1.amazonaws.com",
+  "basePath" : "/dev",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/av_exchange_rate/{user_date}/{curr_code}" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "user_date",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "curr_code",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        }
+      }
+    },
+    "/major_diff/{curr_code}/{last_quo}" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "curr_code",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "last_quo",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        }
+      }
+    },
+    "/min_max_av/{curr_code}/{last_quo}" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "curr_code",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "last_quo",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Empty" : {
+      "type" : "object",
+      "title" : "Empty Schema"
+    }
+  }
+}
