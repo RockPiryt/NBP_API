@@ -1,7 +1,6 @@
 import json
 import requests
 
-# define the handler function that the Lambda service will use an entry point
 def lambda_handler(event, context):
     """Given a date (formatted YYYY-MM-DD) and a currency code (list: https://nbp.pl/en/statistic-and-financial-reporting/rates/table-a/), provide its average exchange rate"""
     
