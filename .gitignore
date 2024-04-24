@@ -18,3 +18,5 @@ configuration_db_test.py
 nbp_small.py
 tests.db
 /tests/sample
+/utils/__pycache__
+/API_NBP_Tests/__pycache__
