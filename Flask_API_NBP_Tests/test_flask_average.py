@@ -5,9 +5,14 @@ from utils.api_utils import getAPI_Data, putData
 
 userDate = "2024-01-10"
 currCode = "EUR"
-baseURI = getFlaskAppBaseURL()#'http://127.0.0.1:5000/api/v1/'
-getURL = baseURI + "av_exchange_rate"+ "/" + userDate + "/"+ currCode
-postURL = baseURI + "create_av_exchange_rate"
+avID = "2"
+
+baseURI = getFlaskAppBaseURL()#'http://127.0.0.1:5000/api/v1/av_exchange_rate'
+getURL = baseURI + "/" + userDate + "/"+ currCode
+postURL = baseURI
+deleteURL = baseURI + "/" + avID
+
+print(deleteURL)
 
 # test valid response or response is not empty
 def test_getAverageRate_response():
@@ -27,9 +32,17 @@ def test_getAverageRate_statusCode():
     assert resp_status == 200
     print("Time Taken: ", timeTaken)
 
-# # test put data(user date and currency code)
-# def test_putDateCurrCode():
-#     payload = {'date': '2024-01-12', 'curr_code': 'EUR'}
-#     data, resp_status, timeTaken  = putData(postURL, payload)
-#     assert data['date'] == userDate
-#     print(data)
+# test put data
+def test_putDataDB():
+    payload = {'date': '2024-01-12', 'curr_code': 'EUR', 'av_currency_rate': '4.3413'}
+    data, resp_status, timeTaken  = putData(postURL, payload)
+    assert data['date'] == userDate
+    print(data)
+
+# test delete data
+def test_putDeleteDB():
+    deleteURL = baseURI + avID
+    data, resp_status, timeTaken  = putData(deleteURL)
+    assert data['date'] == userDate
+    print(data)
+    

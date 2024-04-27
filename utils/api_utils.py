@@ -20,3 +20,13 @@ def putData(url, body):
     data = response.json()
     timeTaken = response.elapsed.total_seconds()
     return data, response.status_code, timeTaken
+
+# delete API call 
+def deleteData(url):
+    header = {'Content-Type': 'application/json'}
+    print("RequestURL: ", url)
+    response = requests.delete(url=url, headers=header)
+    print(response.request.headers)
+    data = response.json()
+    timeTaken = response.elapsed.total_seconds()
+    return data, response.status_code, timeTaken

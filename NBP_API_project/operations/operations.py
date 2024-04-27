@@ -128,7 +128,7 @@ def major_diff(curr_code, last_quo):
 
 #_____________________Endpoints (Database)
 
-@operations_bp.route('/api/v1/av_exchange_rates', methods=['GET'])
+@operations_bp.route('/api/v1/av_exchange_rate', methods=['GET'])
 def get_all_av_exchange_rates():
     """Provide all average exchange rates from DB"""
 
@@ -141,7 +141,7 @@ def get_all_av_exchange_rates():
         'number_of_records': len(av_ex_rates_obj_list)
     }), 200
 
-@operations_bp.route('/api/v1/av_exchange_rates/<int:rate_id>', methods=['GET'])
+@operations_bp.route('/api/v1/av_exchange_rate/<int:rate_id>', methods=['GET'])
 def get_single_av_exchange_rate(rate_id):
     """Provide a single average exchange rate from DB."""
 
@@ -155,7 +155,7 @@ def get_single_av_exchange_rate(rate_id):
 
 
 # POST with headers and body
-@operations_bp.route('/api/v1/create_av_exchange_rate', methods=['POST'])
+@operations_bp.route('/api/v1/av_exchange_rate', methods=['POST'])
 @use_args(rates_schema, error_status_code=400)
 def create_body_av_exchange_rate(args_dict: dict):
     """ Create single record in DB (data: an average exchange rate, a date (formatted YYYY-MM-DD) and a currency code."""
