@@ -16,9 +16,9 @@ def getAPI_Data(url):
 def getAPI_fullResponse(url):
     header = {'Content-Type': 'application/json'}
     response = requests.get(url=url, headers=header)
-    print("Request URL: ", url) 
-    print("Request headers: ", response.request.headers)
-    print("Response headers: ", response.headers)
+    print("\nRequest URL: ", url) 
+    # print("Request headers: ", response.request.headers)
+    # print("Response headers: ", response.headers)
     return response
 
 # put API call 

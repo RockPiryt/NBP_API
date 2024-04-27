@@ -1,4 +1,4 @@
-import requests, json
+import json
 import pytest
 from utils.aws_configparser import getApiURL
 from utils.api_utils import getAPI_fullResponse
@@ -20,7 +20,8 @@ def test_getAverageRate_response():
 
 # test response body for 'success' key
 def test_getAverageRate_successKey():
-    data =  getAPI_fullResponse(avURL)
+    response =  getAPI_fullResponse(avURL)
+    data = response.json()
     assert data['success'] == True
 
 @pytest.mark.res_code
@@ -31,7 +32,7 @@ def test_getAverageRate_statusCode():
     
 
 # test response body for time taken
-def test_getAverageRate_statusCode():
+def test_getAverageRate_timeTaken():
     response = getAPI_fullResponse(avURL)
     timeTaken = response.elapsed.total_seconds()
     print("Time Taken: ", timeTaken)
