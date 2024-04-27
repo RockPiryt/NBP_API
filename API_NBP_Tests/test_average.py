@@ -24,7 +24,7 @@ def test_getAverageRate_successKey():
     data, resp_status, timeTaken =  getAPI_Data(average_url)
     assert data['success'] == True
 
-# @pytest.mark.res_code
+@pytest.mark.res_code
 # test response body for 'statusCode' key
 def test_getAverageRate_statusCode():
     average_url = baseURI + "av_exchange_rate" + "/" + userDate + "/"+ currCode
