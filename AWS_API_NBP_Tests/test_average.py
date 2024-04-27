@@ -1,10 +1,7 @@
 import requests, json
 import pytest
-from utils.api_utils import getAPI_Data
-from utils.api_configparser import *
-
-
-# baseURI_av = "https://r2qw1eeeve.execute-api.eu-west-1.amazonaws.com/dev/av_exchange_rate/{user_date}/{curr_code}"
+from utils.aws_configparser import getApiURL
+from utils.api_utils import getAPI_Data, putData
 
 baseURI = getApiURL()
 userDate = "2024-01-12"
@@ -33,4 +30,10 @@ def test_getAverageRate_statusCode():
     assert resp_status == 200
     print("Time Taken: ", timeTaken)
 
-
+# test put data(user date and currency code)
+# def test_putDateCurrCode():
+#     post_url = baseURI + "/api/v1/create_av_exchange_rate"
+#     payload = {'date': '2024-01-12', 'curr_code': 'EUR'}
+#     data, resp_status, timeTaken  = putData(payload)
+#     assert data['date'] == userDate
+#     print(data)

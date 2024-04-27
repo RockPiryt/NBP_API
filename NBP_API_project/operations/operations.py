@@ -8,13 +8,15 @@ from NBP_API_project.models import AverageRate, AverageRateSchema, rates_schema
 
 @operations_bp.route('/api/v1/av_exchange_rate/<user_date>/<curr_code>', methods=['GET'])
 def av_exchange_rate(user_date, curr_code):
-    """Given a date (formatted YYYY-MM-DD) and a currency code (list: https://nbp.pl/en/statistic-and-financial-reporting/rates/table-a/), provide its average exchange rate"""
+    """Given a date (formatted YYYY-MM-DD) and a currency code 
+    (list: https://nbp.pl/en/statistic-and-financial-reporting/rates/table-a/), provide its average exchange rate"""
 
     # Parameters
     RATE_TABLE = "a"
     NBP_ENDPOINT = f"http://api.nbp.pl/api"
     USER_DATE = f"{user_date}"
     CURR_CODE = f"{curr_code}"
+    #NBP API endpoint "http://api.nbp.pl/api/exchangerates/rates/a/EUR/2024-01-10"
 
     # GET request
     AV_EXCHANGE_RATE_ENDPOINT = f"{NBP_ENDPOINT}/exchangerates/rates/{RATE_TABLE}/{CURR_CODE}/{USER_DATE}/"

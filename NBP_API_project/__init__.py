@@ -21,8 +21,8 @@ def create_app(config_name="development"):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    with app.app_context():
-        db.create_all()
+    # with app.app_context():
+    #     db.create_all()
 
     # Imports/ blueprints
     from NBP_API_project.operations import operations_bp
