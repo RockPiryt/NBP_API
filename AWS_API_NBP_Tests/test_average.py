@@ -1,39 +1,40 @@
 import requests, json
 import pytest
 from utils.aws_configparser import getApiURL
-from utils.api_utils import getAPI_Data, putData
+from utils.api_utils import getAPI_fullResponse
 
-baseURI = getApiURL()
 userDate = "2024-01-12"
 currCode = "EUR"
+
+baseURI = getApiURL()#'https://r2qw1eeeve.execute-api.eu-west-1.amazonaws.com/dev/'
+avURL = baseURI + "av_exchange_rate" + "/" + userDate + "/"+ currCode
 
 
 # test valid response or response is not empty
 def test_getAverageRate_response():
-    average_url = baseURI + "av_exchange_rate" + "/" + userDate + "/"+ currCode
-    data, resp_status, timeTaken =  getAPI_Data(average_url)
+    response =  getAPI_fullResponse(avURL)
+    data = response.json()
+    print(json.dumps(data, indent=4))
     assert len(data)>0, 'empty response'
 
 
 # test response body for 'success' key
 def test_getAverageRate_successKey():
-    average_url = baseURI + "av_exchange_rate" + "/" + userDate + "/"+ currCode
-    data, resp_status, timeTaken =  getAPI_Data(average_url)
+    data =  getAPI_fullResponse(avURL)
     assert data['success'] == True
 
 @pytest.mark.res_code
 # test response body for 'statusCode' key
 def test_getAverageRate_statusCode():
-    average_url = baseURI + "av_exchange_rate" + "/" + userDate + "/"+ currCode
-    data, resp_status, timeTaken =  getAPI_Data(average_url)
-    assert data['statusCode'] == 200
-    assert resp_status == 200
-    print("Time Taken: ", timeTaken)
+    response = getAPI_fullResponse(avURL)
+    assert response.status_code == 200
+    
 
-# test put data(user date and currency code)
-# def test_putDateCurrCode():
-#     post_url = baseURI + "/api/v1/create_av_exchange_rate"
-#     payload = {'date': '2024-01-12', 'curr_code': 'EUR'}
-#     data, resp_status, timeTaken  = putData(payload)
-#     assert data['date'] == userDate
-#     print(data)
+# test response body for time taken
+def test_getAverageRate_statusCode():
+    response = getAPI_fullResponse(avURL)
+    timeTaken = response.elapsed.total_seconds()
+    print("Time Taken: ", timeTaken)
+    assert timeTaken < 1
+    
+

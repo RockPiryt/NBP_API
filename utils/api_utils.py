@@ -11,6 +11,16 @@ def getAPI_Data(url):
     timeTaken = response.elapsed.total_seconds()
     return data, response.status_code, timeTaken
 
+
+# get API call and return full response 
+def getAPI_fullResponse(url):
+    header = {'Content-Type': 'application/json'}
+    response = requests.get(url=url, headers=header)
+    print("Request URL: ", url) 
+    print("Request headers: ", response.request.headers)
+    print("Response headers: ", response.headers)
+    return response
+
 # put API call 
 def putData(url, body):
     header = {'Content-Type': 'application/json'}

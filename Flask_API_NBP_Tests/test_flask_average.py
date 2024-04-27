@@ -12,7 +12,7 @@ getURL = baseURI + "/" + userDate + "/"+ currCode
 postURL = baseURI
 deleteURL = baseURI + "/" + avID
 
-print(deleteURL)
+
 
 # test valid response or response is not empty
 def test_getAverageRate_response():
