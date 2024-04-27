@@ -19,5 +19,7 @@ nbp_small.py
 tests.db
 /tests/sample
 /utils/__pycache__
-/Flask_API_NBP_Tests/__pycache__
+/API_Flask_NBP_Tests/__pycache__
 /AWS_API_NBP_Tests/__pycache__
+/.pytest_cache
+/AWS_API_NBP_Tests/basic/__pycache__
