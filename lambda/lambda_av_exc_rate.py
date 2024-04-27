@@ -2,7 +2,9 @@ import json
 import requests
 
 def lambda_handler(event, context):
-    """Given a date (formatted YYYY-MM-DD) and a currency code (list: https://nbp.pl/en/statistic-and-financial-reporting/rates/table-a/), provide its average exchange rate"""
+    """Given a date (formatted YYYY-MM-DD) and 
+    a currency code (list: https://nbp.pl/en/statistic-and-financial-reporting/rates/table-a/), 
+    provide its average exchange rate"""
     
     # Parameters
     RATE_TABLE = "a"

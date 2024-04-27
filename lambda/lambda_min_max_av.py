@@ -2,7 +2,8 @@ import json
 import requests
 
 def lambda_handler(event, context):
-    """Given a currency code and the number of last quotations N (N <= 255), provide the max and min average value (every day has a different average)."""
+    """Given a currency code and the number of last quotations N (N <= 255), 
+    provide the max and min average value (every day has a different average)."""
 
     # Parameters
     RATE_TABLE = "a"
