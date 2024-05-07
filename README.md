@@ -8,6 +8,7 @@ This API allows us to query data from the Narodowy Bank Polski's public APIs and
 * [Technologies Used](#technologies-used)
 * [Features](#features)
 * [Previews](#Previews)
+* [LoadTests](#LoadTests)
 * [Setup](#setup)
 * [Project Status](#project-status)
 * [Room for Improvement](#room-for-improvement)
@@ -195,6 +196,7 @@ https://r2qw1eeeve.execute-api.eu-west-1.amazonaws.com/dev/major_diff/USD/10
 * Alembic 1.13.1
 * SQLAlchemy 2.0.28
 * Pytest 8.1.1
+* Locust 2.27.0 - load tests
 * PostgreSQL
 * AWS (API Gateway + Lambda Funcitons)
 * Postman
@@ -236,6 +238,27 @@ List the ready features here:
 ### The major difference between the buy and ask rate
 
 ![The major difference between the buy and ask rate Preview ](Documentation/screenshots/third_request.jpeg)
+
+
+
+## LoadTests
+
+Load Tests made with Locust Library.
+
+Full reports in html file -> Documentation/loadTests/reports_loadTests_html
+
+### Load test for Average Endpoint
+
+![Average load test report 1](Documentation/screenshots/loadTests/loadTest_report_1.jpeg)
+![Average load test report 2](Documentation/screenshots/loadTests/loadTest_report_2.jpeg)
+![Average load test report 3](Documentation/screenshots/loadTests/loadTest_report_3.jpeg)
+
+### Stress test for Average Endpoint
+
+![Average stress test report 1](Documentation/screenshots/loadTests/stressTest_report_1.jpeg)
+![Average stress test report 2](Documentation/screenshots/loadTests/stressTest_report_2.jpeg)
+![Average stress test report 3](Documentation/screenshots/loadTests/stressTest_report_3.jpeg)
+
 
 ## Setup
 
