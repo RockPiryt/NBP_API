@@ -23,3 +23,4 @@ tests.db
 /AWS_API_NBP_Tests/__pycache__
 /.pytest_cache
 /AWS_API_NBP_Tests/basic/__pycache__
+/load_tests/__pycache__
