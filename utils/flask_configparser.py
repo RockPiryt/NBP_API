@@ -14,10 +14,12 @@ configFlaskApp.read(CONFIG_FILE)
 def getFlaskAppBaseURL():
     baseURL = 'http://'+ configFlaskApp['flaskapp']['url'] + ':' \
         + configFlaskApp['flaskapp']['port'] + '/api/' \
-            + configFlaskApp['flaskapp']['version']  \
-                + "/av_exchange_rate"
+            + configFlaskApp['flaskapp']['version']  + '/'
     return baseURL
 
-print(getFlaskAppBaseURL())
+# print(getFlaskAppBaseURL())
+
+
+
 
 

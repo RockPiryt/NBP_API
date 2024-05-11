@@ -31,6 +31,14 @@ def putData(url, body):
     timeTaken = response.elapsed.total_seconds()
     return data, response.status_code, timeTaken
 
+#post API call 
+def postData(url, body):
+    header = {'Content-Type': 'application/json'}
+    print("RequestURL: ", url)
+    print("RequestBody: ", json.dumps(body))
+    response = requests.post(url=url, headers=header, json=body)
+    return response
+
 # delete API call 
 def deleteData(url):
     header = {'Content-Type': 'application/json'}

@@ -7,8 +7,9 @@ userDate = "2024-01-10"
 currCode = "EUR"
 avID = "2"
 
-baseURI = getFlaskAppBaseURL()#'http://127.0.0.1:5000/api/v1/av_exchange_rate'
-getURL = baseURI + "/" + userDate + "/"+ currCode
+baseURI = getFlaskAppBaseURL()#'http://127.0.0.1:5000/api/v1'
+getURL = baseURI + "/" + "av_exchange_rate"+"/" + userDate + "/"+ currCode
+print(getURL)
 postURL = baseURI
 deleteURL = baseURI + "/" + avID
 

@@ -59,7 +59,7 @@ def getDataAsTuple(filename):
     newList = [(lines[:2], lines[2]) for lines in dataList]
     return newList
 
-print(getDataAsTuple("avAWSApiStatus.csv"))
+# print(getDataAsTuple("avAWSApiStatus.csv"))
 """
 [(['2024-01-12', ' EUR'], ' 200'), 
 (['2024-01', ' EUR'], ' 400'), 
